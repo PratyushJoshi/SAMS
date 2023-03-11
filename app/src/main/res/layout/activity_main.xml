@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="300dp"
+        android:text="Employee \nAttendance Management"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="signup"
+        android:layout_below="@id/edit_title"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="login"
+        android:layout_below="@id/signup"
+        android:layout_marginLeft="157dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="75dp"
+        android:src="@drawable/mainimage"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+</RelativeLayout>

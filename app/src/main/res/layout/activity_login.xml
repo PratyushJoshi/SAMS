@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".login"
+    tools:ignore="ExtraText">
+
+    <TextView
+        android:id="@+id/txt_fourth"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="300dp"
+        android:text="LOGIN"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,TextSizeCheck" />
+
+    <EditText
+        android:id="@+id/username1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/txt_fourth"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="60dp"
+        android:hint="username"
+        android:textColorHint="@color/black"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="427dp"
+        tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+    <EditText
+        android:id="@+id/password1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/username1"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="60dp"
+        android:hint="password"
+        android:textColorHint="@color/black"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="427dp"
+        tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+
+
+    <Button
+        android:id="@+id/btn_fp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password1"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="60dp"
+        android:backgroundTint="@color/white"
+        android:text="FINGERPRINT"
+        android:textColor="@color/black"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+    //registerNowBtn
+
+    <TextView
+        android:id="@+id/registerNowBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_fp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="60dp"
+        android:text="Not a registered user? Click Here"
+        android:textColor="#8E0101"
+        tools:ignore="HardcodedText,RtlHardcoded,TextContrastCheck" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="75dp"
+        android:src="@drawable/signup"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+</RelativeLayout>

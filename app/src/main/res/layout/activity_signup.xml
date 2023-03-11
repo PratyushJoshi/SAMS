@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".signup"
+    tools:ignore="ExtraText">
+
+    <TextView
+        android:id="@+id/txt_first"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="300dp"
+        android:text="SIGN UP"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,RtlHardcoded,TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/txt_scnd"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/txt_first"
+        android:text="create your account"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="#850102"
+        android:backgroundTint="#0A0D04"
+        android:layout_marginLeft="130dp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+    <EditText
+        android:id="@+id/usernameSignup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/txt_scnd"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="-17dp"
+        android:layout_marginRight="60dp"
+        android:hint="username"
+        android:textColorHint="@color/black"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="427dp" />
+
+    <EditText
+        android:id="@+id/passwordSignup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/usernameSignup"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="60dp"
+        android:hint="password"
+        android:textColorHint="@color/black"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="427dp" />
+
+    <EditText
+        android:id="@+id/confirmpasswordSignup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/passwordSignup"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="60dp"
+        android:hint="confirm password"
+        android:textColorHint="@color/black"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="427dp"
+        android:importantForAutofill="no"
+        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="75dp"
+        android:src="@drawable/signup"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="register fingerprint"
+        android:layout_below="@id/confirmpasswordSignup"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="60dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/loginNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already a registered user? Click Here"
+        android:layout_below="@+id/register"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="60dp"
+        android:textColor="#BD0909"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+</RelativeLayout>
