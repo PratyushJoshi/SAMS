@@ -31,8 +31,6 @@ public class homepage extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationview);
         toolbar = findViewById(R.id.toolbar);
 
-        setSupportActionBar(toolbar);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigration_open, R.string.navigration_close);
 
         drawerLayout.addDrawerListener(toggle);

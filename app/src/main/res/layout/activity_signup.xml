@@ -17,22 +17,20 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText,RtlHardcoded,TextSizeCheck" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txt_scnd"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/txt_first"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="5dp"
         android:text="create your account"
         android:textAllCaps="true"
         android:textStyle="bold"
         android:textColor="#850102"
-        android:backgroundTint="#0A0D04"
-        android:layout_marginLeft="130dp"
-        tools:ignore="HardcodedText,RtlHardcoded" />
-
+        android:backgroundTint="#0A0D04" />
 
     <EditText
         android:id="@+id/usernameSignup"
@@ -43,9 +41,7 @@
         android:layout_marginTop="-17dp"
         android:layout_marginRight="60dp"
         android:hint="username"
-        android:textColorHint="@color/black"
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="427dp" />
+        android:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/passwordSignup"
@@ -56,9 +52,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="60dp"
         android:hint="password"
-        android:textColorHint="@color/black"
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="427dp" />
+        android:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/confirmpasswordSignup"
@@ -69,21 +63,14 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="60dp"
         android:hint="confirm password"
-        android:textColorHint="@color/black"
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="427dp"
-        android:importantForAutofill="no"
-        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
+        android:textColorHint="@color/black" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="75dp"
-        android:src="@drawable/signup"
-        tools:ignore="ContentDescription,RtlHardcoded" />
-
-
+        android:src="@drawable/signup" />
 
     <Button
         android:id="@+id/register"
@@ -95,8 +82,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="60dp"
         android:backgroundTint="@color/white"
-        android:textColor="@color/black"
-        tools:ignore="HardcodedText,RtlHardcoded" />
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/loginNow"
@@ -107,8 +93,6 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="60dp"
-        android:textColor="#BD0909"
-        tools:ignore="HardcodedText,RtlHardcoded" />
-
+        android:textColor="#BD0909" />
 
 </RelativeLayout>

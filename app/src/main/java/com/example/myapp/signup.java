@@ -1,14 +1,16 @@
 package com.example.myapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
@@ -16,83 +18,120 @@ import java.util.concurrent.Executor;
 
 public class signup extends AppCompatActivity {
 
-
-    private BiometricPrompt getPrompt() {
-        Executor executor = ContextCompat.getMainExecutor(this);
-        BiometricPrompt.AuthenticationCallback callback = new BiometricPrompt.AuthenticationCallback() {
-            @Override
-            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
-                notifyUser(errString.toString());
-            }
-
-            private void notifyUser(String toString) {
-            }
-
-            @Override
-            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
-                notifyUser("Authentication Successful!");
-                Intent intent = new Intent(signup.this, homepage.class);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
-                notifyUser("Authentication Failed!");
-            }
-        };
-
-        return new BiometricPrompt(this, executor, callback);
-    }
+    private EditText usernameEditText, passwordEditText, confirmPasswordEditText;
+    private Button registerButton;
+    private DBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        final EditText usernameSignup = findViewById(R.id.usernameSignup);
-        final EditText passwordSignup = findViewById(R.id.passwordSignup);
-        final EditText confirmpasswordSignup = findViewById(R.id.confirmpasswordSignup);
+        usernameEditText = findViewById(R.id.usernameSignup);
+        passwordEditText = findViewById(R.id.passwordSignup);
+        confirmPasswordEditText = findViewById(R.id.confirmpasswordSignup);
+        registerButton = findViewById(R.id.register);
 
-        final Button registerBtn = findViewById(R.id.register);
-        final TextView loginNowBtn = findViewById(R.id.loginNow);
-        //loginNowBtn click to login page
-        loginNowBtn.setOnClickListener(new View.OnClickListener() {
+        dbHandler = new DBHandler(this);
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                openlogin();
+            public void onClick(View v) {
+                final String username = usernameEditText.getText().toString();
+                final String password = passwordEditText.getText().toString();
+                final String confirmPassword = confirmPasswordEditText.getText().toString();
+
+                if (isEmpty(username) || isEmpty(password) || isEmpty(confirmPassword)) {
+                    Toast.makeText(signup.this, "Please enter all fields.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!password.equals(confirmPassword)) {
+                    Toast.makeText(signup.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (dbHandler.isUserExists(username)) {
+                    showUserExistsAlert();
+                } else {
+                    dbHandler.addUserDetails(username, password, confirmPassword);
+                    Toast.makeText(signup.this, "Registered successfully.", Toast.LENGTH_SHORT).show();
+                    clearFields();
+                    showBiometricRegistration();
+                }
             }
         });
-
-
-
-        registerBtn.setOnClickListener(view -> {
-
-            //get data from EditTexts in signup xml page into string variables
-            final String usernameSignuptxt = usernameSignup.getText().toString();
-            final String passwordSignuptxt = passwordSignup.getText().toString();
-            final String confirmpasswordSignuptxt = confirmpasswordSignup.getText().toString();
-
-            // check if user filled all the fields before sending data to firebase
-            // if (usernameSignuptxt.isEmpty() || passwordSignuptxt.isEmpty() || confirmpasswordSignuptxt.isEmpty()) {
-            //Toast.makeText(signup.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
-            //  }
-            //check if passwords are matching with each other
-            //if not matching, then show toast message
-            // else if (!passwordSignuptxt.equals(confirmpasswordSignuptxt)) {
-            // Toast.makeText(signup.this, "Passwords are not matching", Toast.LENGTH_SHORT).show();
-            //  } else {
-
-
-        });
-
     }
-    //loginNowBtn code
-    public void openlogin(){
-        Intent intent = new Intent(this,login.class);
-        startActivity(intent);
 
+    private boolean isEmpty(String text) {
+        return text.trim().isEmpty();
+    }
+
+    private void clearFields() {
+        usernameEditText.setText("");
+        passwordEditText.setText("");
+        confirmPasswordEditText.setText("");
+    }
+
+    private void showUserExistsAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("User Already Exists");
+        builder.setMessage("The username already exists. Do you want to proceed to login?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                navigateToLogin();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void navigateToLogin() {
+        Intent intent = new Intent(signup.this, login.class);
+        startActivity(intent);
+    }
+
+    private void showBiometricRegistration() {
+        BiometricManager biometricManager = BiometricManager.from(this);
+        if (biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS) {
+            BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                    .setTitle("Register Biometric")
+                    .setDescription("Register your biometric for authentication.")
+                    .setNegativeButtonText("Skip")
+                    .build();
+
+            BiometricPrompt biometricPrompt = new BiometricPrompt(this, ContextCompat.getMainExecutor(this),
+                    new BiometricPrompt.AuthenticationCallback() {
+                        @Override
+                        public void onAuthenticationError(int errorCode, CharSequence errString) {
+                            super.onAuthenticationError(errorCode, errString);
+                            // Handle error
+                        }
+
+                        @Override
+                        public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                            super.onAuthenticationSucceeded(result);
+                            Toast.makeText(signup.this, "Biometric Registered!", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onAuthenticationFailed() {
+                            super.onAuthenticationFailed();
+                            // Handle authentication failure
+                        }
+                    });
+
+            biometricPrompt.authenticate(promptInfo);
+        } else {
+            Toast.makeText(this, "Biometric authentication is not available.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
