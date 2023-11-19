@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".login"
-    tools:ignore="ExtraText">
+    tools:context=".login">
 
     <TextView
         android:id="@+id/txt_fourth"
@@ -27,7 +26,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="60dp"
-        android:hint="username"
+        android:hint="Username"
         android:textColorHint="@color/black" />
 
     <EditText
@@ -38,7 +37,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="60dp"
-        android:hint="password"
+        android:hint="Password"
         android:textColorHint="@color/black"
         android:inputType="textPassword" />
 
@@ -71,4 +70,5 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="75dp"
         android:src="@drawable/signup" />
+
 </RelativeLayout>

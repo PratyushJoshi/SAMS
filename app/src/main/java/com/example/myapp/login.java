@@ -115,6 +115,4 @@ public class login extends AppCompatActivity {
         startActivity(intent);
         finish(); // Close the login/signup activity to prevent returning to it
     }
-
-
 }

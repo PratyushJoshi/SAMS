@@ -47,4 +47,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
+    <!-- New TextView to display the selected subject -->
+    <TextView
+        android:id="@+id/textViewSelectedSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected Subject: "
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_att" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Profile Image -->
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <!-- Username TextView -->
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewProfile"
+        android:layout_marginTop="24dp"
+        android:text="Username: "
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- Email TextView -->
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewUsername"
+        android:text="Email: "
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- Subjects TextView -->
+    <TextView
+        android:id="@+id/textViewSubjects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewEmail"
+        android:text="Subjects: "
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- Edit Profile Button -->
+    <Button
+        android:id="@+id/btnEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewSubjects"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Edit Profile" />
+
+</RelativeLayout>

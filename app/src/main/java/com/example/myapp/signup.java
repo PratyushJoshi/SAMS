@@ -14,11 +14,9 @@ import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
-import java.util.concurrent.Executor;
-
 public class signup extends AppCompatActivity {
 
-    private EditText usernameEditText, passwordEditText, confirmPasswordEditText;
+    private EditText usernameEditText, passwordEditText, confirmPasswordEditText, emailEditText;
     private Button registerButton;
     private DBHandler dbHandler;
 
@@ -29,8 +27,9 @@ public class signup extends AppCompatActivity {
 
         usernameEditText = findViewById(R.id.usernameSignup);
         passwordEditText = findViewById(R.id.passwordSignup);
-        confirmPasswordEditText = findViewById(R.id.confirmpasswordSignup);
-        registerButton = findViewById(R.id.register);
+        confirmPasswordEditText = findViewById(R.id.confirmPasswordSignup);
+        emailEditText = findViewById(R.id.emailSignup);
+        registerButton = findViewById(R.id.registerButton);
 
         dbHandler = new DBHandler(this);
 
@@ -40,8 +39,9 @@ public class signup extends AppCompatActivity {
                 final String username = usernameEditText.getText().toString();
                 final String password = passwordEditText.getText().toString();
                 final String confirmPassword = confirmPasswordEditText.getText().toString();
+                final String email = emailEditText.getText().toString();
 
-                if (isEmpty(username) || isEmpty(password) || isEmpty(confirmPassword)) {
+                if (isEmpty(username) || isEmpty(password) || isEmpty(confirmPassword) || isEmpty(email)) {
                     Toast.makeText(signup.this, "Please enter all fields.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -54,7 +54,7 @@ public class signup extends AppCompatActivity {
                 if (dbHandler.isUserExists(username)) {
                     showUserExistsAlert();
                 } else {
-                    dbHandler.addUserDetails(username, password, confirmPassword);
+                    dbHandler.addUserDetails(username, password, confirmPassword, email);
                     Toast.makeText(signup.this, "Registered successfully.", Toast.LENGTH_SHORT).show();
                     clearFields();
                     showBiometricRegistration();
@@ -71,6 +71,7 @@ public class signup extends AppCompatActivity {
         usernameEditText.setText("");
         passwordEditText.setText("");
         confirmPasswordEditText.setText("");
+        emailEditText.setText("");
     }
 
     private void showUserExistsAlert() {

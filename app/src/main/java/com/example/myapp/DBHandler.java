@@ -15,6 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String PASSWORD_COL = "password";
     private static final String CONFIRMPASSWORD_COL = "confirmpassword";
     private static final String BIOMETRIC_COL = "biometric";
+    private static final String EMAIL_COL = "email"; // Added column for email
 
     public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -24,12 +25,14 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + USERNAME_COL + " TEXT PRIMARY KEY UNIQUE,"
+                + USERNAME_COL + " TEXT UNIQUE,"
                 + PASSWORD_COL + " VARCHAR,"
                 + CONFIRMPASSWORD_COL + " VARCHAR,"
+                + EMAIL_COL + " TEXT,"
                 + BIOMETRIC_COL + " INTEGER DEFAULT 0)";
         db.execSQL(query);
     }
+
 
     public boolean isUserExists(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -49,7 +52,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return exists;
     }
 
-    public boolean addUserDetails(String username, String password, String confirmPassword) {
+    public boolean addUserDetails(String username, String password, String confirmPassword, String email) {
         if (isUserExists(username)) {
             return false; // User already exists
         }
@@ -59,6 +62,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(USERNAME_COL, username);
         values.put(PASSWORD_COL, password);
         values.put(CONFIRMPASSWORD_COL, confirmPassword);
+        values.put(EMAIL_COL, email); // Adding the email column
 
         long result = db.insert(TABLE_NAME, null, values);
         db.close();

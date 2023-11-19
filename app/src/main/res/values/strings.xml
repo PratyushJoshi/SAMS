@@ -1,14 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Myapp</string>
 
-    <string name="navigration_open">Open Navigation drawer</string>
-    <string name="navigration_close">Close Navigaton drawer</string>
+    <string name="navigation_open">Open Navigation drawer</string>
+    <string name="navigation_close">Close Navigation drawer</string>
     <string name="home_menu">Home</string>
     <string name="messenger_menu">Messenger</string>
     <string name="calendar_menu">Calendar</string>
     <string name="attendance_menu">Attendance</string>
     <string name="settings_menu">Settings</string>
-    <string name="contactus_menu">Contactus</string>
+    <string name="contactus_menu">Contact Us</string>
     <string name="logout_menu">Logout</string>
+    <string name="select_major">Select Your Major</string>
 
+    <array name="major_array">
+        <item>BTech Computer Science and Engineering</item>
+        <item>Other Majors...</item>
+        <!-- Add more majors as needed -->
+    </array>
 </resources>
