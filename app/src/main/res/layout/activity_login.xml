@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@android:color/background_light"
+    android:background="@drawable/background"
     android:forceDarkAllowed="true">
 
     <!-- Avatar Image -->
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/imageView7"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/img_avatar" />
 
     <!-- Username EditText -->
     <EditText
         android:id="@+id/username1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView10"
+        android:layout_below="@id/imageView7"
         android:layout_marginTop="24dp"
         android:hint="Username"
         android:textColor="@android:color/black"
@@ -59,6 +60,5 @@
         android:layout_marginTop="24dp"
         android:text="Not a registered user? Click Here"
         android:textColor="#0000FF" />
-
 
 </RelativeLayout>
