@@ -1,121 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".contactus"
-    android:background="@drawable/background"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="20dp">
+    android:padding="16dp"
+    android:background="@android:color/white">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarcontactus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="#224968"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:title="Contact us"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="20dp" />
-
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="255dp"
-        android:layout_height="78dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="80dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Send us a message at empteam.org@gmail.com"
-        android:textAlignment="center"
-        android:textColor="#224968"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.617"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        tools:ignore="MissingConstraints" />
-
+    <!-- Avatar Image -->
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="208dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarcontactus"
-        app:srcCompat="@drawable/contactus1"
-        tools:ignore="MissingConstraints" />
+        android:id="@+id/imageView9"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/contactus1"
+        android:contentDescription="@string/avatar_description" />
 
+    <!-- Username EditText -->
     <EditText
         android:id="@+id/namecontact"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/textView7"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Name"
-        android:textColorHint="@color/material_dynamic_neutral20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields,VisualLintTextFieldSize" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView9"
+        android:layout_marginTop="24dp"
+        android:hint="name"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/darker_gray"
+        android:background="@android:color/transparent" />
 
+    <!-- Email EditText -->
     <EditText
         android:id="@+id/emailcontact"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/namecontact"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Email"
-        android:textColorHint="@color/material_dynamic_neutral20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namecontact"
-        tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields,VisualLintTextFieldSize" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/namecontact"
+        android:layout_marginTop="16dp"
+        android:hint="email"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/darker_gray"
+        android:background="@android:color/transparent" />
 
+    <!-- Message EditText -->
     <EditText
         android:id="@+id/messagecontact"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/emailcontact"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Message"
-        android:textColorHint="@color/material_dynamic_neutral20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailcontact"
-        tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields,VisualLintTextFieldSize" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailcontact"
+        android:layout_marginTop="16dp"
+        android:hint="message"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/darker_gray"
+        android:background="@android:color/transparent" />
 
+    <!-- Send Button -->
     <Button
         android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/messagecontact"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="163dp"
-        android:backgroundTint="@color/white"
+        android:layout_below="@id/messagecontact"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
         android:text="send"
-        android:textColor="#224968"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messagecontact"
-        tools:ignore="HardcodedText,MissingConstraints,RtlHardcoded" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/send_button_bg"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:elevation="4dp" />
+</RelativeLayout>

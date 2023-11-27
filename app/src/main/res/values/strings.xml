@@ -12,6 +12,21 @@
     <string name="contactus_menu">Contact Us</string>
     <string name="logout_menu">Logout</string>
     <string name="select_major">Select Your Major</string>
+    <string name="avatar_description">Avatar Description</string>
+    <string name="about_description">
+        <b>AttendEase</b> is a Student Attendance Management app that simplifies attendance tracking using biometric information and timestamps.
+        <br/><br/>
+        Our project aims to provide an efficient and reliable solution for tracking student attendance in educational institutions.
+        <br/><br/>
+        <b>Key Features:</b>
+        <ul>
+            <li>Biometric authentication for secure attendance</li>
+            <li>Real-time timestamped records</li>
+            <li>User-friendly interface for both students and teachers</li>
+        </ul>
+        <br/>
+        Feel free to explore the app and experience a smarter way of managing attendance!
+</string>
 
     <array name="major_array">
         <item>BTech Computer Science and Engineering</item>

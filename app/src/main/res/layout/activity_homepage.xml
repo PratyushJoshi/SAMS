@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="1"
     android:background="@drawable/background"
-    android:elevation="5dp"
-    tools:context=".homepage"
-    tools:ignore="ExtraText"
-    android:id="@+id/drawerlayout"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    android:id="@+id/drawerlayout">
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
@@ -21,17 +15,13 @@
         app:menu="@menu/sidemenu"
         android:layout_gravity="start"/>
 
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -40,32 +30,31 @@
                 android:background="#516C80"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 android:layout_marginBottom="5dp"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-                tools:ignore="MissingConstraints" />
+            //this is first menu
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="51dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
                 android:fontFamily="@font/aclonica"
-                android:text="Employee "
-                android:textSize="36sp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                android:text="Student"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="244dp"
-                android:layout_height="31dp"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/aclonica"
                 android:text="Attendance Management"
-                android:textSize="17sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -74,15 +63,13 @@
                 android:layout_width="141dp"
                 android:layout_height="110dp"
                 android:layout_marginStart="18dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="25dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 app:srcCompat="@drawable/mainimage" />
-
-            //this is first menu
 
             <LinearLayout
                 android:id="@+id/linearLayout"

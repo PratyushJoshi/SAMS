@@ -5,7 +5,6 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,24 +14,31 @@ import java.util.concurrent.Executor;
 
 public class attendancepage extends AppCompatActivity {
 
+    private boolean attendanceMarked = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendancepage);
 
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button btn_att = findViewById(R.id.btn_att);
+        Button btn_att = findViewById(R.id.btn_att);
         btn_att.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                        .setTitle("Verify")
-                        .setDescription("User Authentication is required to proceed")
-                        .setNegativeButtonText("Cancel")
-                        .build();
-                getPrompt().authenticate(promptInfo);
+                if (!attendanceMarked) {
+                    BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                            .setTitle("Verify")
+                            .setDescription("User Authentication is required to proceed")
+                            .setNegativeButtonText("Cancel")
+                            .build();
+                    getPrompt().authenticate(promptInfo);
+                } else {
+                    notifyUser("Attendance already marked!");
+                }
             }
         });
     }
+
     private BiometricPrompt getPrompt() {
         Executor executor = ContextCompat.getMainExecutor(this);
         BiometricPrompt.AuthenticationCallback callback = new BiometricPrompt.AuthenticationCallback() {
@@ -45,7 +51,8 @@ public class attendancepage extends AppCompatActivity {
             @Override
             public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                notifyUser("Authentication Successful!");
+                markAttendance();
+                notifyUser("Attendance Marked!");
             }
 
             @Override
@@ -57,6 +64,11 @@ public class attendancepage extends AppCompatActivity {
 
         BiometricPrompt biometricPrompt = new BiometricPrompt(this, executor, callback);
         return biometricPrompt;
+    }
+
+    private void markAttendance() {
+        // Simulated attendance marking, can be replaced with actual database logic
+        attendanceMarked = true;
     }
 
     private void notifyUser(String message) {

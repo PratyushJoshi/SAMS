@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHandler extends SQLiteOpenHelper {
     private static final String DB_NAME = "emsdb";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private static final String TABLE_NAME = "USERS";
     private static final String ID_COL = "id";
     private static final String USERNAME_COL = "username";
@@ -16,6 +16,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String CONFIRMPASSWORD_COL = "confirmpassword";
     private static final String BIOMETRIC_COL = "biometric";
     private static final String EMAIL_COL = "email"; // Added column for email
+    private static final String LAST_LOGIN_COL = "last_login"; // Added column for last login timestamp
 
     public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -29,11 +30,19 @@ public class DBHandler extends SQLiteOpenHelper {
                 + PASSWORD_COL + " VARCHAR,"
                 + CONFIRMPASSWORD_COL + " VARCHAR,"
                 + EMAIL_COL + " TEXT,"
-                + BIOMETRIC_COL + " INTEGER DEFAULT 0)";
+                + BIOMETRIC_COL + " INTEGER DEFAULT 0,"
+                + LAST_LOGIN_COL + "TIMESTAMP DEFAULT CURRENT_TIMESTAMP)"; // Adding the last login timestamp column
         db.execSQL(query);
+
+        // Create a trigger to update the last login timestamp on login
+        String triggerQuery = "CREATE TRIGGER update_last_login_trigger AFTER UPDATE OF " + BIOMETRIC_COL +
+                " ON " + TABLE_NAME + " WHEN NEW." + BIOMETRIC_COL + "=1 BEGIN " +
+                "UPDATE " + TABLE_NAME + " SET " + LAST_LOGIN_COL + "=CURRENT_TIMESTAMP WHERE " + USERNAME_COL + "=NEW." + USERNAME_COL + ";" +
+                "END;";
+        db.execSQL(triggerQuery);
     }
 
-
+    // Method to check if user exists
     public boolean isUserExists(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
@@ -52,6 +61,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return exists;
     }
 
+    // Method to add user details
     public boolean addUserDetails(String username, String password, String confirmPassword, String email) {
         if (isUserExists(username)) {
             return false; // User already exists
@@ -69,6 +79,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return result != -1; // Returns true if insertion was successful
     }
 
+    // Method to get password for a user
     public String getPasswordForUser(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
@@ -90,6 +101,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return storedPassword;
     }
 
+    // Method to authenticate a user
     public boolean authenticateUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
@@ -108,6 +120,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return isAuthenticated;
     }
 
+    // Method to enable biometric login
     public boolean enableBiometricLogin(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -118,6 +131,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return result != -1; // Returns true if update was successful
     }
 
+    // Method to disable biometric login
     public boolean disableBiometricLogin(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -128,6 +142,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return result != -1; // Returns true if update was successful
     }
 
+    // Method to check if biometric login is enabled for a user
     public boolean isBiometricEnabled(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
@@ -144,6 +159,15 @@ public class DBHandler extends SQLiteOpenHelper {
         }
 
         return isEnabled;
+    }
+
+    public void updateLastLoginTimestamp(String username) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(LAST_LOGIN_COL, System.currentTimeMillis()); // Update timestamp to current time
+
+        db.update(TABLE_NAME, values, USERNAME_COL + "=?", new String[]{username});
+        db.close();
     }
 
     @Override

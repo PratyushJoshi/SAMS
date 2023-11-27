@@ -87,6 +87,8 @@ public class login extends AppCompatActivity {
             @Override
             public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
+                // Update the last login timestamp in the database
+                dbHandler.updateLastLoginTimestamp(currentUsername);
                 openHomePage(); // Redirect to homepage on successful biometric authentication
             }
 
@@ -103,6 +105,10 @@ public class login extends AppCompatActivity {
 
     private void notifyUser(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateLastLoginTimestamp(String username) {
+        dbHandler.updateLastLoginTimestamp(username);
     }
 
     public void opensignup() {
